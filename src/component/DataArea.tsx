@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from '../modules';
-
-type OutterProps = {};
 
 type StateProps = {
     error?: string;
@@ -12,9 +9,7 @@ type StateProps = {
     };
 };
 
-type DispatchProps = {};
-
-type Props = OutterProps & StateProps & DispatchProps;
+type Props = StateProps;
 
 const component: React.SFC<Props> = (props: Props) => {
     return (
@@ -32,20 +27,11 @@ const component: React.SFC<Props> = (props: Props) => {
     );
 };
 
-const mapStateToProps = (
-    state: RootState,
-    _ownProps: OutterProps
-): StateProps => ({
+const mapStateToProps = (state: RootState): StateProps => ({
     error: state.api.error,
     data: state.api.data,
 });
 
-const mapDispatchToProps = (
-    _dispatch: Dispatch<Action>,
-    _ownProps: OutterProps
-): DispatchProps => ({});
-
-export default connect<StateProps, DispatchProps, OutterProps, RootState>(
-    mapStateToProps,
-    mapDispatchToProps
-)(component);
+export default connect<StateProps, {}, {}, RootState>(mapStateToProps)(
+    component
+);
