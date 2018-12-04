@@ -44,16 +44,12 @@ const component: React.SFC<Props> = (props: Props) => {
     );
 };
 
-const mapStateToProps = (
-    state: RootState,
-    _ownProps: OutterProps
-): StateProps => ({
+const mapStateToProps = (state: RootState): StateProps => ({
     disabled: !state.controller.enable,
 });
 
 const mapDispatchToProps = (
-    dispatch: Dispatch<RootActions>,
-    _ownProps: OutterProps
+    dispatch: Dispatch<RootActions>
 ): DispatchProps => ({
     increment: () => {
         dispatch(actionCreator.counter.increment({ value: 1 }));

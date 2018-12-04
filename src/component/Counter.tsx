@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from '../modules';
 
@@ -11,9 +10,7 @@ type StateProps = {
     value: number;
 };
 
-type DispatchProps = {};
-
-type Props = OutterProps & StateProps & DispatchProps;
+type Props = OutterProps & StateProps;
 
 const component: React.SFC<Props> = (props: Props) => {
     return (
@@ -23,19 +20,10 @@ const component: React.SFC<Props> = (props: Props) => {
     );
 };
 
-const mapStateToProps = (
-    state: RootState,
-    _ownProps: OutterProps
-): StateProps => ({
+const mapStateToProps = (state: RootState): StateProps => ({
     value: state.counter.counter,
 });
 
-const mapDispatchToProps = (
-    _dispatch: Dispatch<Action>,
-    _ownProps: OutterProps
-): DispatchProps => ({});
-
-export default connect<StateProps, DispatchProps, OutterProps, RootState>(
-    mapStateToProps,
-    mapDispatchToProps
-)(component);
+export default connect<StateProps, {}, OutterProps, RootState>(mapStateToProps)(
+    component
+);

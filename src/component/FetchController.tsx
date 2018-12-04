@@ -32,16 +32,12 @@ const component: React.SFC<Props> = (props: Props) => {
     );
 };
 
-const mapStateToProps = (
-    state: RootState,
-    _ownProps: OutterProps
-): StateProps => ({
+const mapStateToProps = (state: RootState): StateProps => ({
     disabled: state.api.onFetch,
 });
 
 const mapDispatchToProps = (
-    dispatch: ThunkDispatch<RootState, undefined, RootActions>,
-    _ownProps: OutterProps
+    dispatch: ThunkDispatch<RootState, undefined, RootActions>
 ): DispatchProps => ({
     onClick: () => {
         dispatch(actionCreator.api.getData());
